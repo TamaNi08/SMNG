@@ -1,0 +1,17 @@
+#map
+style[type="text/css"]
+  |  #map { height:800px; } 
+script[type="text/javascript"]
+  | L.Icon.Default.imagePath = "/assets"; var map = L.map('map').setView([32.773131, 130.276284],12); var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"; var osmAttrib = "Map data OpenstreetMap contributors"; L.tileLayer(osmUrl,{ attribution: osmAttrib, maxZoom: 20, }).addTo(map); 
+
+  - @shelters.each do |shelter|
+    - if 25 >= shelter.shelter_percentage
+      | L.marker([#{shelter.lat.to_f},#{shelter.lon.to_f}], {icon: L.icon({iconUrl: "/map0.png"})},) .bindPopup('#{shelter.shelter_name.to_json} <br> 避難者数:#{shelter.count.to_json}人 <br> 収容人数:#{shelter.capacity.to_json}人 <br> 混雑率:#{shelter.shelter_percentage.round}%') .openPopup().addTo(map);
+    - elsif 50 >= shelter.shelter_percentage
+      | L.marker([#{shelter.lat.to_f},#{shelter.lon.to_f}], {icon: L.icon({iconUrl: "/map25.png"})},) .bindPopup('#{shelter.shelter_name.to_json} <br> 避難者数:#{shelter.count.to_json}人 <br> 収容人数:#{shelter.capacity.to_json}人 <br> 混雑率:#{shelter.shelter_percentage.round}%') .openPopup().addTo(map);
+    - elsif 75 >=shelter.shelter_percentage
+      | L.marker([#{shelter.lat.to_f},#{shelter.lon.to_f}], {icon: L.icon({iconUrl: "/map50.png"})},) .bindPopup('#{shelter.shelter_name.to_json} <br> 避難者数:#{shelter.count.to_json}人 <br> 収容人数:#{shelter.capacity.to_json}人 <br> 混雑率:#{shelter.shelter_percentage.round}%') .openPopup().addTo(map);
+    - elsif 100 >shelter.shelter_percentage
+      | L.marker([#{shelter.lat.to_f},#{shelter.lon.to_f}], {icon: L.icon({iconUrl: "/map75.png"})},) .bindPopup('#{shelter.shelter_name.to_json} <br> 避難者数:#{shelter.count.to_json}人 <br> 収容人数:#{shelter.capacity.to_json}人 <br> 混雑率:#{shelter.shelter_percentage.round}%') .openPopup().addTo(map);
+    - else 
+      | L.marker([#{shelter.lat.to_f},#{shelter.lon.to_f}], {icon: L.icon({iconUrl: "/map100.png"})},) .bindPopup('#{shelter.shelter_name.to_json} <br> 避難者数:#{shelter.count.to_json}人 <br> 収容人数:#{shelter.capacity.to_json}人 <br> 混雑率:#{shelter.shelter_percentage.round}%') .openPopup().addTo(map);

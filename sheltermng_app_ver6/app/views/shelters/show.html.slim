@@ -1,0 +1,36 @@
+h1 避難所の詳細
+
+.nav.justify-content-end
+  = link_to '一覧', shelters_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th= Shelter.human_attribute_name(:id)
+      td= @shelter.id
+    tr
+      th= Shelter.human_attribute_name(:shelter_name)
+      td= @shelter.shelter_name
+    tr
+      th= Shelter.human_attribute_name(:capacity)
+      td= @shelter.capacity
+    tr
+      th= Shelter.human_attribute_name(:count)
+      td= @shelter.count
+    tr 
+      th 混雑率
+      td= "#{@shelter.shelter_percentage.round}%"
+    tr
+      th= Shelter.human_attribute_name(:lat)
+      td= @shelter.lat
+    tr
+      th= Shelter.human_attribute_name(:lon)
+      td= @shelter.lon
+    tr
+      th= Shelter.human_attribute_name(:created_at)
+      td= @shelter.created_at
+    tr
+      th= Shelter.human_attribute_name(:updated_at)
+      td= @shelter.updated_at
+
+= link_to '編集', edit_shelter_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @shelter, method: :delete, data: { confirm: "タスク「#{@shelter.shelter_name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

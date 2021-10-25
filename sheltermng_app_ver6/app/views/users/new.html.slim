@@ -1,0 +1,35 @@
+h1 避難者登録
+/ - if user.errors.present?
+/   ul#error_explanation
+/     - user.errors.full_messages.each do |message|
+/       li= message
+
+= form_with model: @user, local: true do |f|
+  .form-group
+    = f.label :name, '名前'
+    = f.text_field :name, class: 'form-control'
+
+    / = f.label :current_shelter, ' 現在の避難所' 
+    / br
+    / = select_tag :current_shelter, options_from_collection_for_select(Shelter.all, :shelter_name, :shelter_name)
+    / br
+
+    = f.label :shelter_id,'避難所'
+    = f.collection_select :shelter_id, Shelter.all,:id, :shelter_name
+    br
+    
+    = f.label :age, '年齢'
+    = f.text_field :age, class: 'form-control'
+
+    = f.label :sex,'性別'
+    br
+    = f.label :man, '男性'
+    = f.radio_button :sex, :man
+    = f.label :woman, '女性'
+    = f.radio_button :sex, :woman
+    br
+
+    = f.label :remarks, '現在の状態など'
+    = f.text_field :remarks, class: 'form-control'
+
+  = f.submit '登録する', class: 'btn btn-primary'

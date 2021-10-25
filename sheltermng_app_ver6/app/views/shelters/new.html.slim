@@ -1,0 +1,6 @@
+h1 避難所の新規登録
+
+.nav.justify-content-end
+  = link_to '一覧', shelters_path, class: 'nav-link'
+
+= render partial: 'form', locals: { shelter: @shelter }

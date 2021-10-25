@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shelter_name: MyString
+  capacity: 
+  lat: 1.5
+  lon: 1.5
+
+two:
+  shelter_name: MyString
+  capacity: 
+  lat: 1.5
+  lon: 1.5

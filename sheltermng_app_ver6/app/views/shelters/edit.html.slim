@@ -1,0 +1,6 @@
+h1 避難所情報の編集
+
+.nav.justify-content-end
+  = link_to '一覧', shelters_path, class: 'nav-link'
+  
+= render partial: 'form', locals: { shelter: @shelter }

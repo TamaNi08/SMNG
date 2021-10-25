@@ -1,0 +1,31 @@
+h1 避難者
+
+/ = link_to '新規登録', new_admin_user_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:shelter_id)
+      th= User.human_attribute_name(:age)
+      th= User.human_attribute_name(:sex)
+      th= User.human_attribute_name(:remarks)
+      th= User.human_attribute_name(:created_at)
+      th= User.human_attribute_name(:updated_at)
+      th
+  tbody
+    - @users.each do |user|
+      tr
+        td= user.name
+        td= user.shelter_id
+        td= user.age 
+        td= user.sex
+        td= user.remarks
+        td= user.created_at
+        td= user.updated_at
+        td
+         = link_to '削除', user, method: :delete, data: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+                    /   = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
+

@@ -1,0 +1,34 @@
+h1 避難所一覧
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Shelter.human_attribute_name(:shelter_name)
+      th= Shelter.human_attribute_name(:capacity)
+      th= Shelter.human_attribute_name(:count)
+      th 混雑率
+      th
+  tbody
+    - @shelters.each do |shelter|
+      tr
+        td= shelter.shelter_name
+        td= "#{shelter.capacity}人" 
+        td= "#{shelter.count}人" 
+        td= "#{shelter.shelter_percentage.round}%"
+        - if 25 >= shelter.shelter_percentage
+          td
+            img[src="/0.png"]
+        - elsif 50 >= shelter.shelter_percentage
+          td
+            img[src="/25.png"]
+        - elsif 75 >= shelter.shelter_percentage
+          td
+            img[src="/50.png"]
+        - elsif 100 > shelter.shelter_percentage
+          td
+            img[src="/75.png"]
+        - else
+          td
+            img[src="/100.png"]
+        td
